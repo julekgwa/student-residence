@@ -1,0 +1,155 @@
+swagger: "2.0"
+info:
+  version: "0.0.1"
+  title: Hello World App
+# during dev, should point to your local machine
+host: localhost:10010
+# basePath prefixes all resource paths 
+basePath: /
+# 
+schemes:
+  # tip: remove http to make production-grade
+  - http
+  - https
+# format of bodies a client can send (Content-Type)
+consumes:
+  - application/json
+# format of the responses to the client (Accepts)
+produces:
+  - application/json
+paths:
+  /api/hello:
+    # binds a127 app logic to a route
+    x-swagger-router-controller: hello_world
+    get:
+      description: Returns 'Hello' to the caller
+      # used as the method name of the controller
+      operationId: hello
+      parameters:
+        - name: name
+          in: query
+          description: The name of the person to whom to say hello
+          required: false
+          type: string
+      responses:
+        "200":
+          description: Success
+          schema:
+            # a pointer to a definition
+            $ref: "#/definitions/HelloWorldResponse"
+        # responses may fall through to errors
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+  /api/register:
+    x-swagger-router-controller: registration
+    post:
+      description: Register new Student
+      operationId: register
+      consumes:
+        - multipart/form-data
+      parameters:
+        - name: name
+          in: formData
+          type: string
+          required: true
+          description: Student name
+        - name: surname
+          in: formData
+          type: string
+          required: true
+          description: Student surname
+        - name: title
+          type: string
+          in: formData
+          description: Student title
+          required: true
+        - name: gender
+          in: formData
+          type: string
+          required: true
+          description: Student gender
+        - name: email
+          in: formData
+          type: string
+          required: true
+          description: Student Email Address
+        - name: phone
+          in: formData
+          type: string
+          required: true
+          description: Student phone number
+        - name: address
+          in: formData
+          type: string
+          required: true
+          description: Student physical address
+        - name: nok-name
+          in: formData
+          type: string
+          required: true
+          description: Name of next of kin
+        - name: nok-surname
+          in: formData
+          type: string
+          required: true
+          description: Surname of next of kin
+        - name: nok-phone
+          in: formData
+          type: string
+          required: true
+          description: Next of kin cellphone
+        - name: nok-work-address
+          in: formData
+          type: string
+          required: true
+          description: Next of kin work address
+        - name: nok-physical-address
+          in: formData
+          type: string
+          required: true
+          description: Next of kin physical address
+        - name: nok-relationship
+          in: formData
+          type: string
+          required: true
+          description: Next of kin physical address
+        - in: formData
+          name: id-copy
+          type: file
+          required: true
+          description: Certified ID copy
+        - in: formData
+          name: proof-of-reg
+          type: file
+          required: true
+          description: Proof Of Registration
+        - in: formData
+          name: nok-id-copy
+          type: file
+          required: true
+          description: Next of kin ID copy
+      responses:
+        200:
+          description: OK
+          schema:
+            # a pointer to a definition
+            $ref: "#/definitions/HelloWorldResponse"
+    
+  /swagger:
+    x-swagger-pipe: swagger_raw
+# complex objects have schema definitions
+definitions:
+  HelloWorldResponse:
+    required:
+      - message
+    properties:
+      message:
+        type: string
+  ErrorResponse:
+    required:
+      - message
+    properties:
+      message:
+        type: string

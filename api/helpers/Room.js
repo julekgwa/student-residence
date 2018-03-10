@@ -3,30 +3,37 @@ const Schema = mongoose.Schema;
 
 const RoomSchema = new Schema({
     studentID: {
-        type: String
+        type: String,
+        default: undefined
     },
     roomNo: {
         type: Number,
-        required: true
+        required: true,
+        unique: true
     },
     occupiedDate: {
-        type: Date
+        type: Date,
+        default: undefined
     },
     availableDate: {
-        type: Date
+        type: Date,
+        default: Date.now
     },
     status: {
-        type: String
+        type: String,
+        default: undefined
     },
     available: {
         type: Boolean,
         default: true
     },
     floor: {
-        type: Number
+        type: Number,
+        default: undefined
     },
     rate: {
-        type: Number
+        type: Number,
+        default: undefined
     }
 });
 

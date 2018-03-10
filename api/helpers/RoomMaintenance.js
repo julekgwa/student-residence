@@ -8,7 +8,8 @@ const MaintenanceSchema = new Schema({
     },
     roomNo: {
         type: Number,
-        required: true
+        required: true,
+        unique: true
     },
     reportedDate: {
         type: Date,

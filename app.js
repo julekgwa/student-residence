@@ -1,7 +1,11 @@
 'use strict';
 
 const SwaggerExpress = require('swagger-express-mw');
+const mongoose = require('mongoose');
 const app = require('express')();
+
+mongoose.connect('mongodb://localhost:27017/mydb');
+
 module.exports = app; // for testing
 
 const config = {

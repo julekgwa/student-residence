@@ -1,7 +1,7 @@
 swagger: "2.0"
 info:
   version: "0.0.1"
-  title: Hello World App
+  title: Resident student
 # during dev, should point to your local machine
 host: localhost:10010
 # basePath prefixes all resource paths 
@@ -136,7 +136,83 @@ paths:
           schema:
             # a pointer to a definition
             $ref: "#/definitions/HelloWorldResponse"
-    
+  /api/addroom:
+    x-swagger-router-controller: rooms
+    post:
+      description: Add new room
+      operationId: addRoom
+      parameters:
+        - name: studentID
+          type: string
+          in: formData
+          description: Student ID
+        - name: roomNo
+          type: string
+          in: formData
+          description: Room number
+        - name: occupiedDate
+          type: string
+          in: formData
+          description: Occupied Date
+        - name: availableDate
+          type: string
+          in: formData
+          description: Available date
+        - name: status
+          type: string
+          in: formData
+          description: Room Status
+        - name: available
+          type: boolean
+          in: formData
+          description: Room available
+        - name: floor
+          type: integer
+          in: formData
+          description: Floor number
+        - name: rate
+          type: integer
+          in: formData
+          description: Rate of the room
+      responses:
+        200:
+          description: OK
+          schema:
+            # a pointer to a definition
+            $ref: "#/definitions/HelloWorldResponse"
+  /api/roomrates:
+    x-swaggger-router-controller: rooms
+    get:
+      description: Get room rates
+      operationId: rates
+      responses:
+        200:
+          description: OK
+          schema:
+            # a pointer to a definition
+            $ref: "#/definitions/HelloWorldResponse"
+  /api/availablerooms:
+    x-swaggger-router-controller: rooms
+    get:
+      description: Get room rates
+      operationId: availableRooms
+      responses:
+        200:
+          description: OK
+          schema:
+            # a pointer to a definition
+            $ref: "#/definitions/HelloWorldResponse"
+  /api/occupiedrooms:
+    x-swaggger-router-controller: rooms
+    get:
+      description: Get room rates
+      operationId: occupiedRooms
+      responses:
+        200:
+          description: OK
+          schema:
+            # a pointer to a definition
+            $ref: "#/definitions/HelloWorldResponse"
   /swagger:
     x-swagger-pipe: swagger_raw
 # complex objects have schema definitions

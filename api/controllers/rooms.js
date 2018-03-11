@@ -1,4 +1,4 @@
-const Room = require('../helpers/Room');
+const Room = require('../helpers/room');
 
 module.exports = {
     addRoom: (req, res) => {

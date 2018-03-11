@@ -90,6 +90,16 @@ paths:
           type: string
           required: true
           description: Name of next of kin
+        - name: idnumber
+          in: formData
+          type: string
+          required: true
+          description: ID number of the student
+        - name: password
+          in: formData
+          type: string
+          required: true
+          description: Student Password
         - name: nok-surname
           in: formData
           type: string

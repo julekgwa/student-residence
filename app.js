@@ -2,9 +2,12 @@
 
 const SwaggerExpress = require('swagger-express-mw');
 const mongoose = require('mongoose');
-const app = require('express')();
+const fileUpload = require('express-fileupload');
 
-mongoose.connect('mongodb://localhost:27017/mydb');
+const app = require('express')();
+app.use(fileUpload());
+
+mongoose.connect('mongodb://localhost:27017/studentdev');
 
 module.exports = app; // for testing
 

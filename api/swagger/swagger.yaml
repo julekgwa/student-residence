@@ -136,7 +136,7 @@ paths:
           schema:
             # a pointer to a definition
             $ref: "#/definitions/HelloWorldResponse"
-  /api/addroom:
+  /api/room/add:
     x-swagger-router-controller: rooms
     post:
       description: Add new room
@@ -180,7 +180,76 @@ paths:
           schema:
             # a pointer to a definition
             $ref: "#/definitions/HelloWorldResponse"
-  /api/roomrates:
+  /api/room/deposit:
+    x-swaggger-router-controller: rooms
+    post:
+      description: Deposit a room
+      operationId: deposit
+      parameters:
+        - name: studendId
+          type: string
+          in: formData
+          description: Student ID
+        - name: date
+          type: string
+          in: formData
+          description: Date of deposit
+        - name: status
+          type: string
+          in: formData
+          description: Status of the deposit
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: "#/definitions/HelloWorldResponse"
+  /api/waitinglist:
+    x-swaggger-router-controller: rooms
+    post:
+      description: Add Student to waiting list
+      operationId: waitingList
+      parameters:
+        - name: studendId
+          type: string
+          in: formData
+          description: Student ID
+        - name: date
+          type: string
+          in: formData
+          description: Date added to waiting list
+        - name: status
+          type: string
+          in: formData
+          description: Status of the room
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: "#/definitions/HelloWorldResponse"
+  /api/room/maintenance:
+    x-swaggger-router-controller: rooms
+    post:
+      description: Deposit a room
+      operationId: maintenace
+      parameters:
+        - name: studendId
+          type: string
+          in: formData
+          description: Student ID
+        - name: date
+          type: string
+          in: formData
+          description: Date of deposit
+        - name: status
+          type: string
+          in: formData
+          description: Status of the deposit
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: "#/definitions/HelloWorldResponse"
+  /api/room/rates:
     x-swaggger-router-controller: rooms
     get:
       description: Get room rates
@@ -191,7 +260,7 @@ paths:
           schema:
             # a pointer to a definition
             $ref: "#/definitions/HelloWorldResponse"
-  /api/availablerooms:
+  /api/room/available:
     x-swaggger-router-controller: rooms
     get:
       description: Get room rates
@@ -202,7 +271,18 @@ paths:
           schema:
             # a pointer to a definition
             $ref: "#/definitions/HelloWorldResponse"
-  /api/occupiedrooms:
+  /api/payment/history:
+    x-swaggger-router-controller: rooms
+    get:
+      description: Get payment history
+      operationId: paymentHistory
+      responses:
+        200:
+          description: OK
+          schema:
+            # a pointer to a definition
+            $ref: "#/definitions/HelloWorldResponse"
+  /api/room/occupied:
     x-swaggger-router-controller: rooms
     get:
       description: Get room rates
